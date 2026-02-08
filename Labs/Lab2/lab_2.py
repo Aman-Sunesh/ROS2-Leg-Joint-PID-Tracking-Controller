@@ -149,12 +149,12 @@ class ForwardKinematics(Node):
         """Timer callback for publishing end-effector marker and position."""
         if self.joint_positions is not None:
             # Joint angles
-            theta1_f = -self.joint_positions[0] + 0
-            theta2_f = -self.joint_positions[1] + 0
-            theta3_f = -self.joint_positions[2] + 0
-            theta1_b = -self.joint_positions[3] + 0
-            theta2_b = -self.joint_positions[4] + 0
-            theta3_b = -self.joint_positions[5] + 0
+            theta1_f = self.joint_positions[0] + 0
+            theta2_f = self.joint_positions[1] + 0
+            theta3_f = self.joint_positions[2] + 0
+            theta1_b = self.joint_positions[3] + 0
+            theta2_b = self.joint_positions[4] + 0
+            theta3_b = self.joint_positions[5] + 0
             end_effector_position_f = self.forward_kinematics_f(theta1_f, theta2_f, theta3_f)
             end_effector_position_b = self.forward_kinematics_b(theta1_b, theta2_b, theta3_b)
             
