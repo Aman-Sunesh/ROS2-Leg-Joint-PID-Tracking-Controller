@@ -204,14 +204,6 @@ class ForwardKinematics(Node):
                 f"End-Effector Position1: x={end_effector_position_f[0]:.2f}, y={end_effector_position_f[1]:.2f}, z={end_effector_position_f[2]:.2f}"
             )
 
-            position2 = Float64MultiArray()
-            position2.data = end_effector_position_b
-            self.position_publisher.publish(position2)
-            self.get_logger().info(
-                f"End-Effector Position2: x={end_effector_position_b[0]:.2f}, y={end_effector_position_b[1]:.2f}, z={end_effector_position_b[2]:.2f}"
-            )
-
-
 def main(args=None):
     rclpy.init(args=args)
     forward_kinematics = ForwardKinematics()
