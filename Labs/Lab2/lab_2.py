@@ -113,20 +113,22 @@ class ForwardKinematics(Node):
     def forward_kinematics_f(self, theta1, theta2, theta3):
         
         # T_0_1 (base_link to leg_front_l_1)
-        
-        T_0_1 = self.translation(0.07500, 0.0445, 0) @ self.rotation_y(theta1)
         theta1 += 0.02742507934570315
+        T_0_1 = self.translation(0.07500, 0.0445, 0) @ self.rotation_y(theta1)
+        
         
         
         # T_1_2 (leg_front_l_1 to leg_front_l_2)
         ## TODO: Implement the transformation matrix from leg_front_l_1 to leg_front_l_2
-        T_1_2 = self.translation(0, 0.04, 0) @ self.rotation_x(-theta2)
         theta2 -= 0.0030478668212889914
+        T_1_2 = self.translation(0, 0.04, 0) @ self.rotation_x(-theta2)
+       
         
         # T_2_3 (leg_front_l_2 to leg_front_l_3)
         ## TODO: Implement the transformation matrix from leg_front_l_2 to leg_front_l_3
-        T_2_3 = self.translation(-0.072, 0, -0.06) @ self.rotation_y(theta3)
         theta3 += 0.589453659057618
+        T_2_3 = self.translation(-0.072, 0, -0.06) @ self.rotation_y(theta3)
+        
 
         # T_3_ee (leg_front_l_3 to end-effector)
         ## TODO: Implement the transformation matrix from leg_front_l_3 to end effector
@@ -144,19 +146,19 @@ class ForwardKinematics(Node):
     def forward_kinematics_b(self, theta1, theta2, theta3):
 
         # T_0_1 (base_link to leg_front_l_1)
-        T_0_1 = self.translation(-0.07500, 0.0325, 0) @ self.rotation_y(theta1)
         theta1 += 0.05565479278564456
+        T_0_1 = self.translation(-0.07500, 0.0325, 0) @ self.rotation_y(theta1)
 
         # T_1_2 (leg_front_l_1 to leg_front_l_2)
         ## TODO: Implement the transformation matrix from leg_front_l_1 to leg_front_l_2
-        T_1_2 = self.translation(0, 0.04, 0) @ self.rotation_x(theta2)
         theta2 -= 0.0030469131469726407
+        T_1_2 = self.translation(0, 0.04, 0) @ self.rotation_x(theta2)
 
         
         # T_2_3 (leg_front_l_2 to leg_front_l_3)
         ## TODO: Implement the transformation matrix from leg_front_l_2 to leg_front_l_3
-        T_2_3 = self.translation(-0.072, 0, -0.06) @ self.rotation_y(theta3)
         theta3 += 0.6058578109741211
+        T_2_3 = self.translation(-0.072, 0, -0.06) @ self.rotation_y(theta3)
 
         # T_3_ee (leg_front_l_3 to end-effector)
         ## TODO: Implement the transformation matrix from leg_front_l_3 to end effector
