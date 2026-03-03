@@ -93,9 +93,9 @@ class InverseKinematics():
         self.fk_functions = [self.fr_leg_fk, self.fl_leg_fk, self.br_leg_fk, self.bl_leg_fk]
 
         # Uncomment when you want to generate the cache #######
-        self.target_joint_positions_cache, self.target_ee_cache = self.cache_target_joint_positions()
-        print(f'shape of target_joint_positions_cache: {self.target_joint_positions_cache.shape}')
-        print(f'shape of target_ee_cache: {self.target_ee_cache.shape}')
+        # self.target_joint_positions_cache, self.target_ee_cache = self.cache_target_joint_positions()
+        # print(f'shape of target_joint_positions_cache: {self.target_joint_positions_cache.shape}')
+        # print(f'shape of target_ee_cache: {self.target_ee_cache.shape}')
 
 
     def fr_leg_fk(self, theta):
@@ -223,20 +223,40 @@ def main():
         plt.title('End Effector X position')
         plt.show()
 
-    # Plot the cached trot gait path for one foot.
-    if len(inverse_kinematics.target_ee_cache):
-        x_list = []
-        z_list = []
-        for position in inverse_kinematics.target_ee_cache:
-            x_list.append(position[0])
-            z_list.append(position[2])
-        plt.xlabel('X(m)')
-        plt.ylabel('Z(m)')
-        plt.title('EE front right foot trot gait')
-        plt.plot(x_list, z_list)
-        plt.show()
+    # # Plot the cached trot gait path for one foot.
+    # if len(inverse_kinematics.target_ee_cache):
+    #     x_list = []
+    #     z_list = []
+    #     for position in inverse_kinematics.target_ee_cache:
+    #         x_list.append(position[0])
+    #         z_list.append(position[2])
+    #     plt.xlabel('X(m)')
+    #     plt.ylabel('Z(m)')
+    #     plt.title('EE front right foot trot gait')
+    #     plt.plot(x_list, z_list)
+    #     plt.show()
 
-
+    # thetas = []
+    # theta_guess = [0.0, 0.0, 0.0]  # warm-start
+    
+    # for target_ee in target_ee_list:
+    #     theta = inverse_kinematics.inverse_kinematics_single_leg(
+    #         target_ee, leg_index=0, initial_guess=theta_guess
+    #     )
+    #     thetas.append(theta)
+    #     theta_guess = theta  # IMPORTANT: makes the joint-angle curves smooth
+    
+    # thetas = np.array(thetas)
+    
+    # plt.figure()
+    # plt.plot(thetas[:,0], label="theta0")
+    # plt.plot(thetas[:,1], label="theta1")
+    # plt.plot(thetas[:,2], label="theta2")
+    # plt.xlabel("Step")
+    # plt.ylabel("Joint angle (rad)")
+    # plt.title("Joint angles vs step")
+    # plt.legend()
+    # plt.show()
 
 if __name__ == '__main__':
     main()
