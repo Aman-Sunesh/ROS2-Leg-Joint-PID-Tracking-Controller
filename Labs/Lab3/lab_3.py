@@ -128,7 +128,7 @@ class InverseKinematics(Node):
 
 
         self.pd_timer_period = 1.0 / 200  # 200 Hz
-        self.ik_timer_period = 1.0 / 100   # 10 Hz
+        self.ik_timer_period = 1.0 / 100   # 100 Hz
         self.pd_timer = self.create_timer(self.pd_timer_period, self.pd_timer_callback)
         self.ik_timer = self.create_timer(self.ik_timer_period, self.ik_timer_callback)
 
@@ -195,8 +195,9 @@ class InverseKinematics(Node):
 
     def interpolate_triangle(self, t, leg_index):
         # implement interpolation for all 4 legs here
+        t = t % 1.0  
         leg_waypoint = self.ee_triangle_positions[leg_index]
-        K = 1/6
+        K = 1.0/6.0
         
         if (t < K):
             s = (t - 0*K)/K
