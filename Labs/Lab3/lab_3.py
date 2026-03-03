@@ -184,7 +184,7 @@ class InverseKinematics(Node):
         return float(error @ error)
 
     def inverse_kinematics_single_leg(self, target_ee, leg_index, initial_guess=[0, 0, 0]):
-        leg_forward_kinematics = self.fk_functions[leg_index]
+        self.leg_forward_kinematics = self.fk_functions[leg_index]
         
         res = scipy.optimize.minimize(
             fun=self.get_error_leg,
