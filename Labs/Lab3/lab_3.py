@@ -82,7 +82,8 @@ class InverseKinematics(Node):
             stand_position_2,
             stand_position_3,
             liftoff_position,
-            mid_swing_position
+            mid_swing_position,
+            touch_down_position
         ]) + rf_ee_offset
         
         lf_ee_offset = np.array([0.06, 0.09, 0])
@@ -94,6 +95,7 @@ class InverseKinematics(Node):
             touch_down_position,
             stand_position_1,
             stand_position_2,
+            stand_position_3
         ]) + lf_ee_offset
         
         rb_ee_offset = np.array([-0.11, -0.09, 0])
@@ -105,6 +107,7 @@ class InverseKinematics(Node):
             touch_down_position,
             stand_position_1,
             stand_position_2,
+            stand_position_3
         ]) + rb_ee_offset
         
         lb_ee_offset = np.array([-0.11, 0.09, 0])
@@ -115,7 +118,8 @@ class InverseKinematics(Node):
             stand_position_2,
             stand_position_3,
             liftoff_position,
-            mid_swing_position
+            mid_swing_position,
+            touch_down_position
         ]) + lb_ee_offset
 
 
@@ -195,7 +199,6 @@ class InverseKinematics(Node):
 
     def interpolate_triangle(self, t, leg_index):
         # implement interpolation for all 4 legs here
-        t = t % 1.0  
         leg_waypoint = self.ee_triangle_positions[leg_index]
         K = 1.0/6.0
         
@@ -228,7 +231,7 @@ class InverseKinematics(Node):
             target_joint_positions_cache.append([])
             target_ee_cache.append([])
             target_joint_positions = [0] * 3
-            for t in np.arange(0, 1, 0.02):# 0.02):
+            for t in np.arange(0, 1.02, 0.02):# 0.02):
                 #print(t)
                 target_ee = self.interpolate_triangle(t, leg_index)
                 target_joint_positions = self.inverse_kinematics_single_leg(target_ee, leg_index, initial_guess=target_joint_positions)
